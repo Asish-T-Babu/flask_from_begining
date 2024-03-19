@@ -13,7 +13,7 @@ def hello():
     # here instead of returnig the above response and status code we can create a response using make_response, so we can specify the application type, status code and teh value
     response = make_response('Hello world')
     response.status_code = 202
-    response.headers['content-typ'] = 'text/plain'
+    response.headers['content-type'] = 'text/plain'
     return response
 
 # Dynamic Url Creation
