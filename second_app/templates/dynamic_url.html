@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Redirection{% endblock %}
+
+{% block content %}
+    <h5>This page is redirected using Dynamic_url</h5>
+
+    <a href="{{ url_for('index')}}">Back to home page</a>
+    
+{% endblock %}

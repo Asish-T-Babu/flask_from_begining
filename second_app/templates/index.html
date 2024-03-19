@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+    <h1>{{ greetings }} {{ myname }}</h1>
+    <ul>
+        {% for i in list1 %}
+            <li {% if i == 30 %} style="color: red;" {% endif %}>{{ i }}</li>
+        {% endfor %}
+        <p>{{ list1 }}</p>
+    </ul>
+    
+    <h3>Filter</h3>
+    <p>{{ some_text }}</p>
+    <p>{{ some_text | upper }}</p>
+    <p>{{ some_text | replace('l', 'L') }}</p>
+    <p>{{ some_text | reverse_string }}</p>
+    <p>{{ some_text | repeat(5) }}</p>
+    
+    <a href="{{ url_for('url_func')}}">Dynamic Url</a>
+
+{% endblock %}
