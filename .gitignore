@@ -1,3 +1,4 @@
 env
 sixth_app/instance
 sixth_app/migrations
+sixth_app/__pycache__
