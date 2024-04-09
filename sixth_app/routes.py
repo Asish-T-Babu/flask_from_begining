@@ -1,8 +1,9 @@
 from flask import render_template, request, jsonify
+from flask_login import login_user, logout_user, current_user, login_required
 
-from models import Person
+from models import Person, Users
 
-def register_routes(app, db):
+def register_routes(app, db, bcrypt):
     
     @app.route('/', methods=['GET','POST'])
     def index():
@@ -29,3 +30,18 @@ def register_routes(app, db):
     def details(pid):
         person = Person.query.filter(Person.pid == pid).first()
         return render_template('detail.html', person= person)
+    
+    @app.route('/home', methods=['GET', 'POST'])
+    def home():
+        return render_template('user_authentication/index.html')
+    
+    @app.route('/login/<uid>')
+    def user_login(uid):
+        user = Users.query.get(uid)
+        login_user(user)
+        return 'Success'    @app.route('/login/<uid>')
+    
+    app.route('/logout')
+    def user_login():
+        login_user()
+        return 'Success'
