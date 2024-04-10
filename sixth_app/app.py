@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -22,6 +22,10 @@ def create_app():
     @login_manager.user_loader
     def load_user(uid):
         return Users.query.get(uid)
+
+    @login_manager.unauthorized_handler
+    def unautherized_callback():
+        return redirect(url_for('home'))
     
     bcrypt = Bcrypt(app)
     from routes import register_routes

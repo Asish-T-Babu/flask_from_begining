@@ -1,5 +1,6 @@
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
+
 
 from models import Person, Users
 
@@ -35,13 +36,46 @@ def register_routes(app, db, bcrypt):
     def home():
         return render_template('user_authentication/index.html')
     
-    @app.route('/login/<uid>')
-    def user_login(uid):
-        user = Users.query.get(uid)
-        login_user(user)
-        return 'Success'    @app.route('/login/<uid>')
+    @app.route('/logout')
+    def logout():
+        logout_user()
+        return redirect(url_for('home'))
     
-    app.route('/logout')
-    def user_login():
-        login_user()
-        return 'Success'
+    @app.route('/signup', methods=['GET','POST'])
+    def signup():
+        if request.method == 'GET':
+            return render_template('user_authentication/signup.html')
+        else:
+            username = request.form.get('username')
+            password = request.form.get('password')
+            hash_password = bcrypt.generate_password_hash(password)
+            user = Users(username=username, password= hash_password, role='user')
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('home'))
+
+
+    @app.route('/login', methods=['GET','POST'])
+    def login():
+        if request.method == 'GET':
+            return render_template('user_authentication/login.html')
+        else:
+            username = request.form.get('username')
+            password = request.form.get('password')
+            user = Users.query.filter_by(username=username).first()
+            if bcrypt.check_password_hash(user.password, password):
+                login_user(user)
+                return redirect(url_for('home'))
+            else:
+                return 'Failed'
+    
+
+    @app.route("/secret")
+    @login_required
+    def secret():
+        if current_user.role == 'admin':
+            return 'My secret Message'
+        else:
+            return 'No permission required'
+    
+    

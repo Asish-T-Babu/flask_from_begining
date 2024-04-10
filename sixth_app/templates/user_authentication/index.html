@@ -2,5 +2,16 @@
 {% block title %}hello  Page{% endblock %}
 
 {% block content %}
-hello
+<h1>Index Page</h1>
+{% if current_user.is_authenticated %}
+<h1>Hello {{ current_user.username }}</h1>
+{% else %}
+<h1>Hello!</h1>
+{% endif %}
+
+<br>
+<a href="{{ url_for('login') }}">Login</a>
+<a href="{{ url_for('signup') }}">Sign Up</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('secret') }}">Secret</a>
 {% endblock %}
