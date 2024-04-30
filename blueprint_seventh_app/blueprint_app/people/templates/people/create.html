@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Todos{% endblock %}
+
+{% block content %}
+<ul>
+    <h1>Create Person</h1>
+    <form method="post">
+        <input type="text" name="name" placeholder="Name" id="" required>
+        <input type="number" name="age" placeholder="Age" id="" required>
+        <input type="text" name="job" placeholder="Job" id="" >
+        <input type="submit" value="Create">
+    </form>
+</ul>
+{% endblock %}

@@ -2,3 +2,6 @@ env
 sixth_app/instance
 sixth_app/migrations
 sixth_app/__pycache__
+blueprint_seventh_app/instance
+blueprint_seventh_app/blueprint_app/migrations
+blueprint_seventh_app/blueprint_app/__pycache__

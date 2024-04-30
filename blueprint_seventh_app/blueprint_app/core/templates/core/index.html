@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Todos{% endblock %}
+
+{% block content %}
+<ul>
+    <h1>Home Page</h1>
+    <a href="{{ url_for('todos.index') }}">todos</a><br>
+    <a href="{{ url_for('people.index') }}">pesople</a>
+</ul>
+{% endblock %}

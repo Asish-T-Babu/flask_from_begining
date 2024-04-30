@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Todos{% endblock %}
+
+{% block content %}
+<ul>
+    {% for people in peoples %}
+        <li>{{ people }}</li>
+    {% endfor %}
+    <a href="{{ url_for('people.create') }}">Create</a>
+</ul>
+{% endblock %}
