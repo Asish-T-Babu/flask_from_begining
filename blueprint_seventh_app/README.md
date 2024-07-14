@@ -1,6 +1,6 @@
-** cd blueprint **
-** flask db init **
-** flask db migrate **
-** flask db upgrade **
-** cd .. **
-** python run.py **
+cd blueprint
+flask db init
+flask db migrate
+flask db upgrade
+cd ..
+python run.py
